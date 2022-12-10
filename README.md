@@ -1,5 +1,4 @@
-# database_project
-final project DBMS
+# Database_Final_Project
 # Jumabayev Yerlan(210103020)
 # Nurkhat Muratkhan (210103047)
 ## Introduction and database description.
