@@ -10,4 +10,7 @@
 *Libraries, as repositories of knowledge and information, are steadily increasing their importance. Libraries in the course of their activities perform many functions, such as registration, storage, issuance of books and their return acceptance to the library, total amount of books, the penalty system, and etc.*
 
 ## Who will use it?
-* Staff, students, teachers and book lovers. 
+* Staff
+* Students
+* Teachers 
+* Book lovers. 
