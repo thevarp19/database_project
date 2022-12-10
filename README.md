@@ -1,7 +1,7 @@
 # Database_Final_Project
-## Jumabayev Yerlan(210103020)
-## Nurkhat Muratkhan (210103047)
-## Library Database.
+### Jumabayev Yerlan(210103020)
+### Nurkhat Muratkhan (210103047)
+# Library Database.
 ## Introduction and database description.
 
 *Our library database. It contains all the data about the library that is in the library . All data is added by our employees.*
