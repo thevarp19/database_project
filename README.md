@@ -14,3 +14,5 @@
 * Students
 * Teachers 
 * Book lovers. 
+## Where did you get the idea for this project?
+*We found the idea on the Internet. We studied how libraries work.
