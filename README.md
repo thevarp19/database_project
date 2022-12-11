@@ -18,5 +18,6 @@
 
 * We found the idea on the Internet. We studied how libraries work.
 ## ER diagram
-![final_project](https://user-images.githubusercontent.com/119878275/206850958-4ce928d4-cd73-44e7-8fb9-bf0cdff0fd6f.jpg)
+![final project](https://user-images.githubusercontent.com/119878275/206891813-822b1593-88d3-4e03-8f6e-e795d942b9f3.jpg)
+
 
