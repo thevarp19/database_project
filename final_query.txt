@@ -1,0 +1,97 @@
+1.Information about books who is written,his category and language.
+CREATE VIEW ALLBOOKS AS 
+SELECT bi.book_id, a.first_name, a.last_name, bi.book_title, bc.category_name, bi.LANGUAGE 
+FROM book_inf as bi, author_book as ab 
+INNER JOIN author as a on a.author_id=ab.author_id 
+JOIN book_category as bc on ab.book_id=bc.book_id
+WHERE bi.book_id=ab.book_id;
+2. Where books.
+CREATE VIEW whereBooks AS 
+SELECT bi.book_title,sh.bookshelf, sh.floor, bi.copies, bi.LANGUAGE 
+FROM book_inf as bi, shelf as sh 
+WHERE bi.shelf_id=sh.shelf_id;
+
+3.
+CREATE VIEW reader_info AS SELECT r.FIRST_name, r.LAST_name, bi.book_title, l.loan_date 
+FROM reader_inf as r, book_inf bi, loan as l 
+JOIN student as s on s.student_id=l.reader_id
+WHERE bi.book_id = l.book_id;
+
+4.
+select row_number() over(), book_title 
+from book_inf 
+where book_id IN (SELECT ab.book_id from author_book ab, author a WHERE a.author_id = ab.author_id and a.first_name = 'Wilie' and last_name = 'Stack');
+5.
+Who is take/read this book.
+select FIRST_name, LAST_name, book_title, LANGUAGE
+from book_inf b JOIN reader_inf r
+on b.book_id = r.book_id;
+6.
+select r.FIRST_name, r.LAST_name, p.place_of_work
+from reader_inf r, persona p
+where r.reader_id = p.persona_id and r.reader_id in (select persona_id FROM persona);
+7.
+SELECT s.staff_name, s.gender, r.joined_date, r.FIRST_name, r.LAST_name
+from staff s, reader_inf r
+where s.staff_id = r.issued_by;
+8.
+SELECT reader_id, FIRST_name, LAST_name
+from reader_inf 
+WHERE EXISTS (SELECT * from loan WHERE returned_date is NULL);
+9.
+SELECT re.FIRST_name, re.LAST_name
+from reservation r, reader_inf re
+UNION
+SELECT re.FIRST_name, re.LAST_name
+from loan l, reader_inf re;
+10.
+SELECT b.book_id, book_title, bookshelf, floor
+from book_inf b join shelf s
+on b.book_id = s.shelf_id;
+11.
+select a.first_name, a.last_name, COUNT(ab.book_id) as quantity
+FROM author a, author_book ab
+WHERE a.author_id = ab.author_id
+GROUP BY ab.author_id
+ORDER by quantity;
+12.
+ALTER TABLE `staff`
+  MODIFY `staff_id` int(11) NOT NULL AUTO_INCREMENT;
+13.
+ALTER TABLE `author_book`
+  ADD CONSTRAINT `author_book_ibfk_1` FOREIGN KEY (`author_id`) REFERENCES `author` (`author_id`),
+  ADD CONSTRAINT `author_book_ibfk_2` FOREIGN KEY (`book_id`) REFERENCES `book_inf` (`book_id`);
+14.
+select row_number() over(),r.first_name, r.last_name, f.reader_id, sum(fine_amount) 
+from reader_inf r, fine f
+where f.reader_id = r.reader_id
+GROUP by f.reader_id;
+
+17.
+CREATE TRIGGER push_fine AFTER UPDATE ON loan
+ FOR EACH ROW BEGIN
+    if datediff(now(),new.returned_date)  > 7 then
+        INSERT into fine (reader_id, loan_id, fine_date, fine_amount)
+        VALUES (new.reader_id, new.loan_id, new.returned_date, 5000);
+    END if;
+end
+18.
+CREATE TRIGGER copies_minus AFTER INSERT ON reader_inf
+ FOR EACH ROW UPDATE book_inf set copies = copies - 1
+where new.book_id = book_inf.book_id
+
+19.
+CREATE TRIGGER copies_plus AFTER DELETE ON reader_inf
+ FOR EACH ROW BEGIN
+UPDATE book_inf set copies = copies + 1
+where old.book_id = book_inf.book_id;
+INSERT into archive
+select old.first_name,old.last_name,b.book_title,now()
+from book_inf b
+where old.book_id = b.book_id;
+end
+
+20.
+CREATE TRIGGER pay_fine AFTER INSERT ON fine_payment
+ FOR EACH ROW DELETE FROM fine
+where new.reader_id = reader_id

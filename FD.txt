@@ -1,0 +1,58 @@
+1.Book_inf
+book_id-> {book_title, language, shelf_id, copies}
+book_title->{language}
+
+2.book_category
+book_id->{category_name}
+
+3.author_book
+author_id->{book_id}
+book_id->{author_id}
+
+4.author
+author_id->{first_name,lastt_name}
+
+5.Reader_inf
+reader_id-> {book_id, first_name, last_name, joined_date, status_id, issued_by}
+
+6.Student
+student_id->{place_of_study, year_of_graduate}
+
+7.Person
+person_id->{place_of_work}
+
+8.Staff
+staff_id -> {staff_name, gender}
+staff_name ->{gender}
+
+9.Staff_contacts
+staff_id ->{address, city, telephone}
+
+10.Loan
+loan->{book_id, reader_id, loan_date, returned_date}
+
+11.Fine
+fine_id->{reader_id, loan_id, fine_date, fine_amount}
+
+12.reader_status
+status_id->{value}
+
+13.reader_phone_number
+reader_id->{phone_number}
+
+14.fine_payment
+payment_id -> {reader_id, payment_date, payment_amount}
+
+15.reservation
+reservation_id->{book_id, reader_id, reservation_date, rsrv_status_id}
+
+16.reservation_status 
+reservation_status_id->{value};
+
+17.shelf
+shelf_id->{bookshelf,floor}
+
+
+
+
+

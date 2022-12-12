@@ -1,0 +1,9 @@
+CREATE INDEX AUTHORS ON AUTHOR(FIRSTNAME,LASTNAME);
+CREATE INDEX TITLES ON BOOK_INF(BOOK_TITLE);
+
+START TRANSACTION;
+
+SELECT * FROM author;
+insert into fine select row_number() over(), reader_id, loan_id, now(), 5000 from loan where datediff(now(), loan_date) > 7;
+
+COMMIT;
