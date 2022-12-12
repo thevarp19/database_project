@@ -6,8 +6,15 @@ SHOW INDEX FROM book_inf;
 SHOW INDEX FROM all_copies;
 
 START TRANSACTION;
-
 SELECT * FROM author;
 insert into fine select row_number() over(), reader_id, loan_id, now(), 5000 from loan where datediff(now(), loan_date) > 7;
-
 COMMIT;
+
+BEGIN TRANSACTION;
+        DELETE FROM reader_inf WHERE reader_id_ = ‘100’;
+        DELETE FROM persona WHERE persona_id_ = ‘100’;
+        COMMIT;
+
+BEGIN TRANSACTION;
+        INSERT INTO fine_payment(150, 2022-10-10, 5000)
+        COMMIT;
