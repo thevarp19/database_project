@@ -14,9 +14,9 @@
 * Students
 * Teachers 
 * Book lovers. 
-## Where did you get the idea for this project?
+##How will data obsolescence be handled?
+We are adding outdated data to the archive
 
-* We found the idea on the Internet. We studied how libraries work.
 ## ER diagram
 ![final project](https://user-images.githubusercontent.com/119878275/207074350-abcd902f-8079-429f-9461-380b72cc893e.jpg)
 
